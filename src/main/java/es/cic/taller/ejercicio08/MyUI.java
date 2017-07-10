@@ -7,10 +7,10 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
+import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -28,23 +28,38 @@ public class MyUI extends UI {
 	private TapeteForm tapete2 = new TapeteForm(this);
 	private TapeteForm tapete3 = new TapeteForm(this);
 	private TapeteForm tapete4 = new TapeteForm(this);
+	
+	private VerticalLayout layout = new VerticalLayout();
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         
-    	final VerticalLayout layout = new VerticalLayout();
+        TabSheet sample = new TabSheet();
+        sample.setHeight(100.0f, Unit.PERCENTAGE);
+        sample.addStyleName(ValoTheme.TABSHEET_FRAMED);
+        sample.addStyleName(ValoTheme.TABSHEET_PADDED_TABBAR);
         
-
-        Button button = new Button("Aceptar");
-        button.addClickListener( e -> {
-
-        	layout.addComponents(tapete1, tapete2, tapete3, tapete4);
-        	
-        });
+        sample.addTab(tapete1, "Jugador1");
+        sample.addTab(tapete2, "Jugador2");
+        sample.addTab(tapete3, "Jugador3");
+        sample.addTab(tapete4, "Jugador4");
         
-        layout.addComponents(button);
+        
+    	layout.addComponent(sample);        
         
         setContent(layout);
+        
+        Baraja baraja = new Baraja();
+        
+        Tapete manoTapete1 = baraja.getTapete();
+        Tapete manoTapete2 = baraja.getTapete();
+        Tapete manoTapete3 = baraja.getTapete();
+        Tapete manoTapete4 = baraja.getTapete();
+        
+        tapete1.setTapete(manoTapete1);
+        tapete2.setTapete(manoTapete2);
+        tapete3.setTapete(manoTapete3);
+        tapete4.setTapete(manoTapete4);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
