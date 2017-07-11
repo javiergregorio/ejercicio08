@@ -34,34 +34,35 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         
-        TabSheet sample = new TabSheet();
-        sample.setHeight(100.0f, Unit.PERCENTAGE);
-        sample.addStyleName(ValoTheme.TABSHEET_FRAMED);
-        sample.addStyleName(ValoTheme.TABSHEET_PADDED_TABBAR);
+        TabSheet pestanya = new TabSheet();
+        pestanya.setHeight(100.0f, Unit.PERCENTAGE);
+        pestanya.addStyleName(ValoTheme.TABSHEET_FRAMED);
+        pestanya.addStyleName(ValoTheme.TABSHEET_PADDED_TABBAR);
         
-        sample.addTab(tapete1, "Jugador1");
-        sample.addTab(tapete2, "Jugador2");
-        sample.addTab(tapete3, "Jugador3");
-        sample.addTab(tapete4, "Jugador4");
-        
-        
-    	layout.addComponent(sample);        
+        pestanya.addTab(tapete1, "Jugador 1");
+        pestanya.addTab(tapete2, "Jugador 2");
+        pestanya.addTab(tapete3, "Jugador 3");
+        pestanya.addTab(tapete4, "Jugador 4");
+       
+     
+    	layout.addComponent(pestanya);        
         
         setContent(layout);
         
+        
         Baraja baraja = new Baraja();
         
-        Tapete manoTapete1 = baraja.getTapete();
-        Tapete manoTapete2 = baraja.getTapete();
-        Tapete manoTapete3 = baraja.getTapete();
-        Tapete manoTapete4 = baraja.getTapete();
+        Tapete manoTapete1 = baraja.getTapete(1);
+        Tapete manoTapete2 = baraja.getTapete(2);
+        Tapete manoTapete3 = baraja.getTapete(3);
+        Tapete manoTapete4 = baraja.getTapete(4);
         
         tapete1.setTapete(manoTapete1);
         tapete2.setTapete(manoTapete2);
         tapete3.setTapete(manoTapete3);
         tapete4.setTapete(manoTapete4);
     }
-
+   
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {

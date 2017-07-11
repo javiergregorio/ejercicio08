@@ -31,7 +31,6 @@ public class TapeteForm extends FormLayout {
 		carta3.setValue(tapete.getCarta3().toString());
 		carta4.setValue(tapete.getCarta4().toString());
 		
-		
 	}
 	
 }
